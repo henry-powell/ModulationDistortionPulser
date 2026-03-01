@@ -5,6 +5,8 @@
 ![Project Type](https://img.shields.io/badge/Project-Type%3A%20Audio%20Plugin-success)
 ![Domain](https://img.shields.io/badge/Domain-Audio%20DSP-critical)
 ![Focus](https://img.shields.io/badge/Focus-Modulation%20%26%20Distortion-informational)
+![Grad Program](https://img.shields.io/badge/Grad%20Program-Audio%20Technology%20(M.A.)-purple)
+![Institution](https://img.shields.io/badge/American%20University-Washington%2C%20DC-darkblue)
 
 ModulationDistortionPulser is a JUCE-based audio plugin combining amplitude modulation (AM), ring modulation (RM), and nonlinear distortion stages. The project explores dynamic harmonic shaping through modulation-driven gain and clipping structures.
 
