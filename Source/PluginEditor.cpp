@@ -30,17 +30,20 @@ ModulationDistortionPulserAudioProcessorEditor::ModulationDistortionPulserAudioP
       pulseFreqSlider.setNumDecimalPlacesToDisplay (1);
     
     // Labels
-     addAndMakeVisible (modFreqLabel);
-     modFreqLabel.setText ("Mod Freq", juce::dontSendNotification);
-     modFreqLabel.setJustificationType (juce::Justification::centred);
+      addAndMakeVisible (modFreqLabel);
+      modFreqLabel.setText ("Mod Freq", juce::dontSendNotification);
+      modFreqLabel.setJustificationType (juce::Justification::centred);
+      modFreqLabel.attachToComponent (&modFreqSlider, false);
 
-     addAndMakeVisible (driveDbLabel);
-     driveDbLabel.setText ("Drive", juce::dontSendNotification);
-     driveDbLabel.setJustificationType (juce::Justification::centred);
+      addAndMakeVisible (driveDbLabel);
+      driveDbLabel.setText ("Drive", juce::dontSendNotification);
+      driveDbLabel.setJustificationType (juce::Justification::centred);
+      driveDbLabel.attachToComponent (&driveDbSlider, false);
 
-     addAndMakeVisible (pulseFreqLabel);
-     pulseFreqLabel.setText ("Pulse Freq", juce::dontSendNotification);
-     pulseFreqLabel.setJustificationType (juce::Justification::centred);
+      addAndMakeVisible (pulseFreqLabel);
+      pulseFreqLabel.setText ("Pulse Freq", juce::dontSendNotification);
+      pulseFreqLabel.setJustificationType (juce::Justification::centred);
+      pulseFreqLabel.attachToComponent (&pulseFreqSlider, false);
     
     // ComboBoxes
       addAndMakeVisible (modTypeBox);
@@ -89,26 +92,19 @@ void ModulationDistortionPulserAudioProcessorEditor::resized()
     area.removeFromTop (20);
 
     // Top row: combo boxes
-
     auto topRow = area.removeFromTop (30);
-    modTypeBox.setBounds  (topRow.removeFromLeft (topRow.getWidth() / 2).reduced (4));
+    modTypeBox.setBounds (topRow.removeFromLeft (topRow.getWidth() / 2).reduced (4));
     distTypeBox.setBounds (topRow.reduced (4));
 
     // Space between combos and knobs
     area.removeFromTop (20);
 
-
     // Sizes
-  
     const int knobSizeMain   = 140;
     const int knobSizeBottom = 120;
-    const int labelH         = 18;
-    // space between label and knob
-    const int labelGap       = 2;   
 
-    // Middle row: two knobs + labels
- 
-    auto midRow = area.removeFromTop (knobSizeMain + labelH + labelGap);
+    // Middle row: two knobs (labels are attached, so we don't place labels here)
+    auto midRow = area.removeFromTop (knobSizeMain);
 
     auto leftCell  = midRow.removeFromLeft (midRow.getWidth() / 2);
     auto rightCell = midRow;
@@ -116,34 +112,15 @@ void ModulationDistortionPulserAudioProcessorEditor::resized()
     auto leftKnobBounds  = leftCell.withSizeKeepingCentre  (knobSizeMain, knobSizeMain);
     auto rightKnobBounds = rightCell.withSizeKeepingCentre (knobSizeMain, knobSizeMain);
 
-    // Labels above knobs
-    modFreqLabel.setBounds (
-        leftKnobBounds.withY (leftKnobBounds.getY() - (labelH + labelGap))
-                      .withHeight (labelH));
-
-    driveDbLabel.setBounds (
-        rightKnobBounds.withY (rightKnobBounds.getY() - (labelH + labelGap))
-                       .withHeight (labelH));
-
-    // Knobs
-    modFreqSlider.setBounds  (leftKnobBounds);
-    driveDbSlider.setBounds  (rightKnobBounds);
+    modFreqSlider.setBounds (leftKnobBounds);
+    driveDbSlider.setBounds (rightKnobBounds);
 
     // Space between rows
     area.removeFromTop (20);
 
-    // Bottom knob + label
-   
-    auto bottomBlock = area.removeFromTop (knobSizeBottom + labelH + labelGap);
-
+    // Bottom knob
+    auto bottomBlock = area.removeFromTop (knobSizeBottom);
     auto pulseKnobBounds = bottomBlock.withSizeKeepingCentre (knobSizeBottom, knobSizeBottom);
 
-    pulseFreqLabel.setBounds (
-        pulseKnobBounds.withY (pulseKnobBounds.getY() - (labelH + labelGap))
-                       .withHeight (labelH));
-
     pulseFreqSlider.setBounds (pulseKnobBounds);
-    
 }
-    
-
